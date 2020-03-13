@@ -1,0 +1,97 @@
+.calendar {
+    width: 100vw;
+    height: 100vh;
+    .calendar-wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .calendar-contents {
+        padding-top: 30px;
+        margin: 0 auto;
+        width: 56%;
+        @include tab {
+            padding-top: 20px;
+            width: 70%;
+        }
+        @include sp {
+            width: 100%;
+            padding-top: 0;
+        }
+    }
+    .calendar-main {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .calendar-header {
+        background: $calendar_header_bg_color;
+        height: 56px;
+        .month-year {
+            font-size: 12px;
+            font-weight: bold;
+            color: $calendar_header_color;
+            text-align: center;
+            padding-top: 5px;
+        }
+        .month-names {
+            list-style: none;
+            display: -webkit-flex;
+            display: flex;
+            justify-content: space-between;
+            &__last-month {
+                margin-left: 5px;
+            }
+            &__this-month{
+                font-size: 20px;
+                font-weight: bold;
+                color: $calendar_header_color;
+            }
+            &__next-month {
+                margin-right: 5px;
+            }
+            a {
+                text-decoration: none;
+                color: $calendar_header_color;
+                font-size: 12px;
+            }
+        }
+    }
+    .calendar-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .week-text {
+        border: 1px solid #cfd8dc;
+        color: #90a4ae;
+        font-size: 10px;
+        font-weight: normal;
+        width: 14%;
+        width: -moz-calc(98% / 7);
+        width: -webkit-calc(98% / 7);
+        width: calc(98% / 7);
+        &--sunday {
+            color: $sunday_color;
+        }
+        &--saturday {
+            color: $saturday_color;
+        }
+    }
+    .date-line {
+        height: 60px;
+        vertical-align: top;
+        @include pc {
+            height: 75px;
+        }
+    }
+    .date-text {
+        font-size: 8px;
+        color: #90a4ae;
+        border: 1px solid #cfd8dc;
+        padding-left: 2px;
+        &--sunday {
+            color: $sunday_color;
+        }
+        &--saturday {
+            color: $saturday_color;
+        }
+    }
+}
