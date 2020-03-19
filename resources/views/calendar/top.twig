@@ -1,0 +1,60 @@
+{% extends 'layouts/common.twig' %}
+
+{% block content %}
+<div class="calendar">
+    <div class="calendar-wrapper">
+        <div class="calendar-contents">
+            <div class="calendar-main">
+                <div class="calendar-header">
+                    <p class="month-year">{{ year }}</p>
+                    <ul class="month-names">
+                        <li class="month-names__last-month"><a href="#">&lt;&lt; {{ months.lastMonth }}月</a></li>
+                        <li class="month-names__this-month">{{ months.currentMonth }}月</li>
+                        <li class="month-names__next-month"><a href="#">{{ months.nextMonth }}月 &gt;&gt;</a></li>
+                    </ul>
+                </div>
+                <table class="calendar-table">
+                    <thead>
+                        <tr class="week-line">
+                        {% for dayOfWeek in (['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']) %}
+                        <th
+                            {% if dayOfWeek == 'Sun' %}
+                            class="week-text week-text--sunday"
+                            {% elseif dayOfWeek == 'Sat' %}
+                            class="week-text week-text--saturday"
+                            {% else %}
+                            class="week-text"
+                            {% endif %}
+                            >
+                            {{ dayOfWeek }}
+                        </th>
+                        {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for date in dates %}
+                        {% if (date.dayOfWeek == 0) %}
+                        <tr class="date-line">
+                        {% endif %}
+                        {% if date.month == months.currentMonth %}
+                            {% if date.dayOfWeek == 0 %}
+                            <td class="date-text date-text--sunday">{{ date.day }}</td>
+                            {% elseif date.dayOfWeek == 6 %}
+                            <td class="date-text date-text--saturday">{{ date.day }}</td>
+                            {% else %}
+                            <td class="date-text">{{ date.day }}</td>
+                            {% endif %}
+                        {% else %}
+                        <td class="date-text date-text--not-current"></td>
+                        {% endif %}
+                        {% if (date.dayOfWeek == 6) %}
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
