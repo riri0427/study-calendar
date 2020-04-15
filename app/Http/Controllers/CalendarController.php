@@ -29,7 +29,7 @@ class CalendarController extends Controller
         // カレンダーの日付を設定
         $dates = $this->createCalendarDates($date);
 
-        return view('top')->with([
+        return view('calendar/top')->with([
             'dates' => $dates,
             'months' => $months,
             'year' => $year
