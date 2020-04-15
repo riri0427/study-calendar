@@ -19274,17 +19274,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./public/scss/style.scss":
-/*!********************************!*\
-  !*** ./public/scss/style.scss ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -19339,16 +19328,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/style.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/style.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!**************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./public/scss/style.scss ***!
-  \**************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/style.scss ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/izawariho/laravel/study-calendar/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /Users/izawariho/laravel/study-calendar/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/izawariho/laravel/study-calendar/public/scss/style.scss */"./public/scss/style.scss");
+module.exports = __webpack_require__(/*! /Users/izawariho/laravel/study-calendar/resources/sass/style.scss */"./resources/sass/style.scss");
 
 
 /***/ })
