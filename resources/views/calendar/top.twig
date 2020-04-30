@@ -8,9 +8,23 @@
                 <div class="calendar-header">
                     <p class="month-year">{{ year }}</p>
                     <ul class="month-names">
-                        <li class="month-names__last-month"><a href="#">&lt;&lt; {{ months.lastMonth }}月</a></li>
+                        <li class="month-names__last-month">
+                            <form method="POST" name="last_month" action="{{ route('calendar.prev') }}">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="year" value="{{ year }}">
+                                <input type="hidden" name="month" value="{{ months.lastMonth }}">
+                                <a href="javascript:last_month.submit()">&lt;&lt; {{ months.lastMonth }}月</a>
+                            </form>
+                        </li>
                         <li class="month-names__this-month">{{ months.currentMonth }}月</li>
-                        <li class="month-names__next-month"><a href="#">{{ months.nextMonth }}月 &gt;&gt;</a></li>
+                        <li class="month-names__next-month">
+                            <form method="POST" name="next_month" action="{{ route('calendar.next') }}">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="year" value="{{ year }}">
+                                <input type="hidden" name="month" value="{{ months.nextMonth }}">
+                                <a href="javascript:next_month.submit()">{{ months.nextMonth }}月 &gt;&gt;</a>
+                            </form>
+                        </li>
                     </ul>
                 </div>
                 <table class="calendar-table">

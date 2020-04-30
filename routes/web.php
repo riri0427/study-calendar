@@ -11,4 +11,8 @@
 |
 */
 
-Route::get('/', 'CalendarController@top');
+Route::get('/', 'CalendarController@top')->name('calendar.top');
+Route::get('/calendar', 'CalendarController@top')->name('calendar.top');
+Route::post('/calendar/prev', 'CalendarController@top')->name('calendar.prev');
+Route::post('/calendar/next', 'CalendarController@top')->name('calendar.next');
+
