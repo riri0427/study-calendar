@@ -4,15 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use JavaScript;
 
 class CalendarController extends Controller
 {
-    public function top()
+    public function top(Request $request)
     {
-        // TODO: 一旦今日の日付で設定してあるので、リクエストに応じて変えられるようにする
+        // 一旦今日の日付で設定
         $date = Carbon::now();
         $year = $date->year;
         $month = $date->month;
+
+        // requestにyearとmonthがあれば置き換える
+        if ($request->year && $request->month) {
+            $year = $request->year;
+            $month = $request->month;
+        }
+
+        // 年が変わる場合の処理
+        if ($request->path() === 'calendar/prev' && $request->month === '12') {
+            $year -= 1;
+        } else if ($request->path() === 'calendar/next' && $request->month === '1') {
+            $year += 1;
+        }
 
         $dateStr = sprintf('%04d-%02d-01', $year, $month);
         $date = new Carbon("{$year}-{$month}-01");
@@ -38,13 +52,14 @@ class CalendarController extends Controller
 
     private function createCalendarDates(Carbon $date)
     {
-        // 月末が日曜日の場合の挙動を修正
-        $addDay = ($date->copy()->endOfMonth()->isSunday()) ? 7 : 0;
+        // 月の日数を保持しておく
+        $daysInMonth = $date->daysInMonth;
         // カレンダーを四角形にするため、前月となる左上の隙間用のデータを入れるためずらす
+        $subDayCount = $date->dayOfWeek; // ずらした日数を保持しておく
         $date->subDay($date->dayOfWeek);
         // 同上。右下の隙間のための計算。
-        // 変数に修正
-        $count = 31 + $addDay + $date->dayOfWeek;
+        // 月の日数 + 左上の隙間 + 右下の隙間 の合計を算出
+        $count = $daysInMonth + $subDayCount;
         $count = ceil($count / 7) * 7;
         $dates = [];
 

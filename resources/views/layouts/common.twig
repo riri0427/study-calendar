@@ -6,8 +6,11 @@
         <link href={{ asset("/css/style.css") }} rel="stylesheet" type="text/css">
     </head>
     <body>
+        {% include 'viewForJsVars.twig' %}
+        <div>
 
-    {% block content %}{% endblock %}
+            {% block content %}{% endblock %}
 
+        </div>
     </body>
 </html>
